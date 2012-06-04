@@ -1,11 +1,12 @@
 class Particle
-  attr_accessor :name, :pos, :vel, :acc
+  attr_accessor :name, :mass, :pos, :vel, :acc
 
-  def initialize name=nil, px = 0, py = 0, vx = 0, vy = 0, ax = 0, ay = 0
-    @name = name
-    @pos = Vector.new px, py
-    @vel = Vector.new vx, vy
-    @acc = Vector.new ax, ay
+  def initialize opts={name: nil, mass:1, px: 0, py: 0, vx: 0, vy: 0, ax: 0, ay: 0}
+    @name = opts[:name]
+    @mass = opts[:mass]
+    @pos = Vector.new opts[:px], opts[:py]
+    @vel = Vector.new opts[:vx], opts[:vy]
+    @acc = Vector.new opts[:ax], opts[:ay]
   end
 
   def update
@@ -13,7 +14,6 @@ class Particle
     @pos += @vel
     self
   end
-
 
 end
 
