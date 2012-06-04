@@ -60,8 +60,7 @@ class Vector
   end
 
   def norm
-    new Vector(@x,@y) / mag
+    Vector.new(@x,@y) / mag
   end
-
 
 end
