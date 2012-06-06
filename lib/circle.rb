@@ -1,4 +1,4 @@
-class Circle
+class Circle < Particle
   attr_accessor :r
 
   def initialize args={}
@@ -17,7 +17,19 @@ class Circle
   end
 
   def circle_collision circle
+    circle_collision_resolution circle if circle_collides? circle
+  end
 
+  def circle_collision_resolution circle
+    n = (@pos - circle.pos).norm
+
+    a1 = n.dot @vel
+    a2 = n.dot circle.vel
+
+    p = 2*(a1-a2)/(@mass+circle.mass)
+
+    @vel -= n * (p*circle.mass)
+    circle.vel += n * (p*@mass)
   end
 
   def circle_collides? circle
