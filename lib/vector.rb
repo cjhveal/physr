@@ -7,7 +7,7 @@ class Vector
   end
 
   def self.zero
-    Vector.new 0, 0
+    Vector.new
   end
 
   def self.dist_sq a, b
@@ -23,12 +23,20 @@ class Vector
     b.norm * b.norm.dot(a)
   end
 
-  def + vec
-    Vector.new @x + vec.x, @y + vec.y
+  def + a
+    if a.is_a?(Vector)
+      Vector.new @x + a.x, @y + a.y
+    else
+      Vector.new @x + a, @y + a
+    end
   end
 
-  def - vec
-    Vector.new @x - vec.x, @y - vec.y
+  def - a
+    if a.is_a?(Vector)
+      Vector.new @x - a.x, @y - a.y
+    else
+      Vector.new @x - a, @y - a
+    end
   end
 
   def * a
@@ -61,6 +69,10 @@ class Vector
 
   def norm
     Vector.new(@x,@y) / mag
+  end
+
+  def project a
+    b.norm * b.norm.dot(self)
   end
 
 end

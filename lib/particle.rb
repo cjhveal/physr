@@ -1,7 +1,9 @@
 class Particle
   attr_accessor :name, :mass, :pos, :vel, :acc
 
-  def initialize opts={name: nil, mass:1, px: 0, py: 0, vx: 0, vy: 0, ax: 0, ay: 0}
+  def initialize args={}
+    defaults = {name: nil, mass:1, px: 0, py: 0, vx: 0, vy: 0, ax: 0, ay: 0}
+    opts = defaults.merge args
     @name = opts[:name]
     @mass = opts[:mass]
     @pos = Vector.new opts[:px], opts[:py]
@@ -16,4 +18,3 @@ class Particle
   end
 
 end
-
