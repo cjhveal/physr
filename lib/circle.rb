@@ -68,7 +68,6 @@ class Circle < Particle
 
   def aabb_collision aabb
     aabb_collision_x(aabb) and aabb_collision_y(aabb)
-
   end
 
   def aabb_collision_x aabb
