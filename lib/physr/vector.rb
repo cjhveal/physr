@@ -72,7 +72,6 @@ class Vector
   end
 
   def project a
-    b.norm * b.norm.dot(self)
+    a.norm * a.norm.dot(self)
   end
-
 end
