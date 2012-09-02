@@ -10,14 +10,6 @@ class Vector
     Vector.new
   end
 
-  def self.dist_sq a, b
-    dx, dy = b.x - a.x, b.y - a.y
-    dx*dx + dy*dy
-  end
-
-  def self.dist a, b
-    Math.sqrt dist_sq(a, b)
-  end
 
   def self.project a, b
     b.norm * b.norm.dot(a)
@@ -55,6 +47,10 @@ class Vector
     end
   end
 
+  def dot vec
+    @x * vec.x + @y * vec.y
+  end
+
   def mag_sq
     @x*@x + @y*@y
   end
@@ -63,15 +59,20 @@ class Vector
     Math.sqrt mag_sq
   end
 
-  def dot vec
-    @x * vec.x + @y * vec.y
+  def dist_sq a
+    dx, dy = a.x - @x, a.y - @y
+    dx*dx + dy*dy
+  end
+
+  def dist a
+    Math.sqrt dist_sq(a)
   end
 
   def norm
     Vector.new(@x,@y) / mag
   end
 
-  def project a
+  def project_onto a
     a.norm * a.norm.dot(self)
   end
 end
