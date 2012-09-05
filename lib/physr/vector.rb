@@ -10,9 +10,8 @@ class Vector
     Vector.new
   end
 
-
-  def self.project a, b
-    b.norm * b.norm.dot(a)
+  def == other
+    other.is_a? Vector and @x == other.x and @y == other.y
   end
 
   def + a

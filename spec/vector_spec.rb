@@ -13,6 +13,14 @@ describe Vector do
     v.should be_vector.with_values(0, 0)
   end
 
+  it 'should compare two vectors' do
+    u, v = Vector.zero, Vector.zero
+    u.should eq v
+
+    u, v = Vector.new(2,2), Vector.new(2,2)
+    u.should eq v
+  end
+
   describe 'arithmetic' do
     let(:operators) { [:+, :-, :*, :/] }
     let(:base_vector) { Vector.new 2, 2 }
