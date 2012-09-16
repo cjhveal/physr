@@ -4,7 +4,8 @@ class Engine
   def initialize args = {}
     defaults = {time_scale:1}
     opts = defaults.merge args
-    @objects = @aabbs = []
+    @objects = []
+    @aabbs = []
     @last_time = nil
     @time_scale = opts[:time_scale]
   end
