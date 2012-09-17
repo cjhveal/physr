@@ -1,49 +1,14 @@
 class Engine
-  attr_accessor :objects, :aabbs, :last_time, :time_scale
+  OBJECT_TYPES = [Particle, Circle]
 
-  def initialize args = {}
-    defaults = {time_scale:1}
-    opts = defaults.merge args
-    @objects = []
-    @aabbs = []
-    @last_time = nil
-    @time_scale = opts[:time_scale]
+  attr_accessor :objects
+  def initialize
+    @objects = [1]
   end
 
-  def time_since_last
-    unless @last_time
-      @last_time = Time.now
-      return 0
+  OBJECT_TYPES.each do |type|
+    define_method "add_#{type.name.downcase}" do |*args|
+      @objects << type.new(*args)
     end
-    time = Time.now
-    time_diff = time - @last_time
-    @last_time = time
-    time_diff / @time_scale
-  end
-
-  def update
-    time = time_since_last
-    return if time == 0
-  end
-
-  def aabb_collision
-    @objects.each do |obj|
-      @aabbs.each { |aabb| obj.aabb_colission aabb }
-    end
-  end
-
-  def circle_collision
-    circles = @objects.select { |obj| obj.instance_of? Circle }
-    @objects.each do |obj|
-      circles.each { |circle| obj.circle_collision circle }
-    end
-  end
-
-  def add_circle args={}
-    @objects.push Circle.new args
-  end
-
-  def add_aabb args={}
-    @aabbs.push AABB.new args
   end
 end
