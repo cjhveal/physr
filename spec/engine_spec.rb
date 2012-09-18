@@ -44,10 +44,12 @@ describe Engine do
   describe "#update!" do
     let(:engine) { Engine.new }
 
-    before(:all) do
+    specify do
       mock = double('object')
       mock.should_receive(:update!).exactly(3).times
       engine.objects = [mock, mock, mock]
+
+      engine.update!
     end
   end
 

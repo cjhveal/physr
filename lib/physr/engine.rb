@@ -19,4 +19,8 @@ class Engine
     1000 * (@time.to_i - last_time.to_i)
   end
 
+  def update!
+    @objects.each(&:update!)
+  end
+
 end
