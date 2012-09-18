@@ -3,7 +3,7 @@ class Engine
 
   attr_accessor :objects
   def initialize
-    @objects = [1]
+    @objects = []
   end
 
   OBJECT_TYPES.each do |type|
@@ -11,4 +11,12 @@ class Engine
       @objects << type.new(*args)
     end
   end
+
+  def time_since_last
+    last_time, @time = @time, Time.now
+    return 0 unless last_time
+
+    1000 * (@time.to_i - last_time.to_i)
+  end
+
 end
