@@ -22,5 +22,4 @@ class Engine
   def update!
     @objects.each(&:update!)
   end
-
 end

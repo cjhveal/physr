@@ -37,6 +37,8 @@ describe Engine do
       engine.time_since_last.should be 0
       Timecop.travel(Time.now + 1)
       engine.time_since_last.should be 1000
+      Timecop.travel(Time.now + 2)
+      engine.time_since_last.should be 2000
     end
 
   end
@@ -52,5 +54,4 @@ describe Engine do
       engine.update!
     end
   end
-
 end
